@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.C.E NOV-DEC WASSCE 2025 - Physical Education Schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Dark Blue/Cyan Theme */
+        .bg-primary { background-color: #0F172A; /* Slate 900 */ }
+        .bg-secondary { background-color: #1E293B; /* Slate 800 */ }
+        .text-accent { color: #06B6D4; /* Cyan 500 */ }
+        .border-accent { border-color: #06B6D4; }
+        
+        @keyframes pulse-fade {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .loading-animation {
+            animation: pulse-fade 2s infinite ease-in-out;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.4); /* Subtle Cyan Glow */
+        }
+        
+        .timer-complete {
+            text-shadow: 0 0 15px rgba(22, 163, 74, 0.9); /* Green glow for completion */
+        }
+    </style>
+</head>
+<body class="bg-primary text-white min-h-screen flex flex-col font-sans">
+
+    <header class="text-center py-8 bg-secondary shadow-2xl">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wider text-accent">
+            G.C.E NOV-DEC WASSCE 2025
+        </h1>
+        <p class="text-lg sm:text-xl mt-2 text-slate-300 font-medium">
+            (Private WASSCE Timetable)
+        </p>
+        <div class="mt-4 text-sm sm:text-base text-white font-semibold bg-red-700 inline-block px-5 py-2 rounded-full border border-red-500 shadow-md">
+            <span class="mr-2">🗓️ Official Exam Date:</span> **Monday, 17th November, 2025**
+        </div>
+    </header>
+    <main class="flex-grow flex flex-col items-center justify-center p-4">
+        
+        <section class="text-center my-12 p-8 w-full max-w-2xl bg-secondary/70 rounded-2xl backdrop-blur-sm border-4 border-accent shadow-3xl">
+            <div id="countdown-container" class="loading-animation">
+                <p class="text-xl sm:text-2xl font-semibold text-slate-200 uppercase tracking-wide">
+                    Time until **Physical Education** Papers Begin (13:00 HRS):
+                </p>
+                <div class="mt-4">
+                    <p id="countdown-timer" class="text-5xl sm:text-6xl lg:text-7xl font-mono font-bold text-red-500"></p>
+                </div>
+                <div class="mt-4">
+                    <span class="inline-flex items-center text-accent">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-sm font-light">Persistent countdown to Nov 17, 2025, 1:00 PM (13:00 hrs)</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section class="w-full max-w-2xl mt-8 mb-16 text-center">
+            
+            <h2 class="text-3xl font-bold mb-8 text-indigo-400 border-b-2 border-indigo-600 pb-2">
+                🤸 Physical Education Examination Schedule
+            </h2>
+            
+            <div class="mb-6 p-5 bg-secondary/50 rounded-lg border border-purple-600/70 hover:bg-secondary transition duration-300">
+                <p class="text-xl font-extrabold text-pink-300 mb-2">PC5112: Physical Education 2 (Essay)</p>
+                <div class="text-gray-300 mt-2">
+                    <span class="block text-sm font-light">Duration: **1hr 20mins**</span>
+                    <p class="text-2xl font-mono text-lime-300 my-1">**13:00 hrs – 14:20 hrs.**</p>
+                </div>
+            </div>
+
+            <div class="p-5 bg-secondary/50 rounded-lg border border-purple-600/70 hover:bg-secondary transition duration-300">
+                <p class="text-xl font-extrabold text-pink-300 mb-2">PC5111: Physical Education 1 (Objective)</p>
+                <div class="text-gray-300 mt-2">
+                    <span class="block text-sm font-light">Duration: **50mins**</span>
+                    <p class="text-2xl font-mono text-lime-300 my-1">**14:20 hrs – 15:10 hrs.**</p>
+                </div>
+            </div>
+            
+        </section>
+        </main>
+    
+    <footer class="text-center py-4 text-gray-500 text-sm bg-secondary mt-auto border-t border-gray-700">
+        &copy; 2025 WASSCE Examination Portal. Information for Private Candidates.
+    </footer>
+    <script>
+        // Target date: Monday, November 17, 2025 at 1:00 PM (13:00:00) GMT
+        // Note: Months are 0-indexed in JavaScript (November is 10)
+        const targetDate = new Date(2025, 10, 17, 13, 0, 0).getTime();
+        const countdownTimerEl = document.getElementById('countdown-timer');
+        const countdownContainerEl = document.getElementById('countdown-container');
+
+        // Function to update the timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            let distance = targetDate - now;
+
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownTimerEl.innerHTML = "EXAM COMMENCED";
+                countdownTimerEl.classList.remove('text-red-500');
+                countdownTimerEl.classList.add('text-green-500', 'timer-complete');
+                countdownContainerEl.classList.remove('loading-animation');
+                return;
+            }
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Format the output (adds leading zero if number is < 10)
+            const formatTime = (time) => String(time).padStart(2, '0');
+
+            // Display the result in the element, using slightly smaller separators
+            countdownTimerEl.innerHTML = `${formatTime(days)}<span class="text-3xl sm:text-4xl text-slate-400">:</span>${formatTime(hours)}<span class="text-3xl sm:text-4xl text-slate-400">:</span>${formatTime(minutes)}<span class="text-3xl sm:text-4xl text-slate-400">:</span>${formatTime(seconds)}`;
+        }
+
+        // Run the function immediately
+        updateCountdown();
+
+        // Update the count down every 1 second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
